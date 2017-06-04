@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jun 5, 2017 1:55:43 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="powerbudgetdb" dynamic-insert="false" dynamic-update="false" mutable="true" name="model.Budgetperiodic" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="budgetperiodic">
+        <id name="idbudgetperiodic" type="java.lang.Integer">
+            <column name="idbudgetperiodic"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="userid" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="userid"/>
+        </property>
+        <property generated="never" lazy="false" name="nomenid" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="nomenid"/>
+        </property>
+        <property generated="never" lazy="false" name="type" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="type"/>
+        </property>
+        <property generated="never" lazy="false" name="comment" optimistic-lock="true" type="string" unique="false">
+            <column length="256" name="comment"/>
+        </property>
+        <property generated="never" lazy="false" name="initialdate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="initialdate"/>
+        </property>
+        <property generated="never" lazy="false" name="period" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="period"/>
+        </property>
+        <property generated="never" lazy="false" name="periodtype" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="periodtype"/>
+        </property>
+        <property generated="never" lazy="false" name="repeatcountmax" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="repeatcountmax"/>
+        </property>
+        <property generated="never" lazy="false" name="repeatcountcurrent" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="repeatcountcurrent"/>
+        </property>
+    </class>
+</hibernate-mapping>
