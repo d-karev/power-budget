@@ -1,4 +1,5 @@
 {
+  "ecmaVersion": 5,
   "plugins": {
     "guess-types": {
       
@@ -6,12 +7,16 @@
     "outline": {
       
     },
-    "angular": {
+    "angular1": {
+      
+    },
+    "bootstrap": {
       
     }
   },
   "libs": [
     "ecma5",
-    "browser"
+    "browser",
+    "jquery"
   ]
 }
