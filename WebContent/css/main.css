@@ -11,7 +11,7 @@
 }
 
 * {
-	box-sizing: border-box;
+	box-sizing: border-box;	
 }
 
 html, body {
@@ -21,6 +21,7 @@ html, body {
   	background: rgb(255, 253, 254);
   	font-family: 'Roboto-Light', Fallback, sans-serif;
   	font-size: 16px;
+  	min-width: 320px;
 }
 
 div {
@@ -34,70 +35,63 @@ div {
   	padding-right: 0px;
 }
 
-#banner-text {
+#banner-area {
 	padding-left: 30px;
   	padding-right: 30px;
-  	padding-bottom: 10px;  	
+  	padding-bottom: 10px;
+  	display: flex;  	
 }
 
-#main-menu {
-	border-top-color: red;
-	border-bottom-color: red;
+#banner-text {
+    font-family: 'Oswald-Regular', Fallback, sans-serif;
+    font-size: 46px;
+    width: 100%;
 }
 
-@media (max-width: 767px) {
-	.sm-mint li {
-		border-top: 1px solid rgba(255, 0, 0, 0.2);
-	}
-	
-	.sm-mint ul {
-	    background: rgba(134, 152, 170, 0.08);
-	}
-	
-	.sm-mint a span.sub-arrow {
-		background: rgba(255, 0, 0, 0.4);		
+#languagebox {
+	white-space: nowrap;
+	font-size: 0px;
+	width: 156px;
+	margin-top: auto;
+}
+
+@media (max-width: 480px) {
+	#banner-area {
+		display: inline-block;
 	}
 }
 
-@media (min-width: 768px) {
-	.sm-mint > li:first-child {
-	    margin-left: 10px;
-	}	
-	
-	.sm-mint a span.sub-arrow {
-	    border-color: red transparent transparent transparent;
-	}
-	
-	.sm-mint a:hover {
-	    background: rgb(54, 72, 90);
-	}
-	
-	.sm-mint a.highlighted span.sub-arrow {
-	    border-color: rgb(255, 251, 253) transparent transparent transparent;
-	}
-	
-	.sm-mint a.has-submenu.highlighted {
-	    color: rgb(255, 251, 253);
-	    background: rgb(54, 72, 90);
-	}
-	
-	.sm-mint ul {
-		color: rgb(255, 251, 253);
-		background: rgb(54, 72, 90);
-	}
-	
-	.sm-mint .sm-nowrap > li > a {
-	    color: rgb(255, 251, 253);
-	}
+.custombutton-small {
+	background: rgb(34, 52, 70);
+	color: rgb(255, 251, 253);
+	width: 78px;
+	height: 30px;
+	border-style: none;
+	margin: 0px;
+	padding: 0px;
+	transition-duration: 0.8s;
+	font-size: 13px;
+	display: inline-block;
+}
 
-	.sm-mint .sm-nowrap > li > a:hover {
-	    background: rgb(94, 112, 130);
-	    color: rgb(255, 251, 253);
-	}	
-	
-	.sm-mint ul a span.sub-arrow {
-		border-color: transparent transparent transparent red;
-	}
+.custombutton-small:hover {
+	background: rgb(74, 92, 110);
+}
+
+.custombutton-small.left {
+	border-radius: 7px 0px 0px 7px;
+}
+
+.custombutton-small.right {
+	border-radius: 0px 7px 7px 0px;
+}
+
+.custombutton-small.active {
+	background: rgb(235, 0, 0);
+}
+
+.custombutton-small.active:hover {
+	background: rgb(255, 57, 57);
 }
 
 #content {

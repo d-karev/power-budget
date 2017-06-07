@@ -7,9 +7,19 @@
 
     <body>
 	    <ui:composition>
-	    	<div id="banner-text">
-	    		<span style="font-family: 'Oswald-Regular', Fallback, sans-serif; font-size:46px;">Power Budget</span>
-	    	</div>	    		    	
+	    	<div id="banner-area">
+	    		<span id="banner-text">#{msg.genProductName}</span>
+	    		<h:form id="languagebox">            
+		            <h:commandButton        
+		            	value="#{msg.langBG}" 
+		            	action="#{localeBean.setLanguage('bg')}" 
+		            	class="custombutton-small left #{localeBean.language == 'bg' ? 'active' : ''}" />
+		            <h:commandButton 
+		            	value="#{msg.langEN}" 
+		            	action="#{localeBean.setLanguage('en')}" 
+		            	class="custombutton-small right #{localeBean.language == 'en' ? 'active' : ''}" /> 
+		        </h:form>	
+	    	</div>	    					    		    	
 	    	<nav class="main-nav" role="navigation">
 			  	<ul id="main-menu" class="sm sm-mint">
 	  				<li><a href="#">Item 1</a></li>
@@ -25,13 +35,8 @@
 							<li><a href="#">Item 2-3</a></li>
 						</ul>
 					</li>
-					<li><a href="#">Item 3</a>
-						<ul>
-							<li><a href="#">Item 2-2</a></li>
-							<li><a href="#">Item 2-3</a></li>
-						</ul>
-					</li>
-			  	</ul>
+					<li><a href="#">Item 3</a></li>
+			  	</ul>			  
 			</nav>
 	    </ui:composition>
     </body>

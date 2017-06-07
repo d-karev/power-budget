@@ -6,5 +6,21 @@
   <managed-bean-class>bean.generalBean</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
- <application/>
+ <managed-bean>
+  <managed-bean-name>localeBean</managed-bean-name>
+  <managed-bean-class>bean.localeBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <application>
+  <locale-config>
+   <default-locale>en</default-locale>
+   <!--Bulgarian locale-->
+   <supported-locale>bg</supported-locale>
+  </locale-config>
+  <resource-bundle>
+   <description>English (default) locale</description>
+   <base-name>internationalization.messages</base-name>
+   <var>msg</var>
+  </resource-bundle>
+ </application>
 </faces-config>

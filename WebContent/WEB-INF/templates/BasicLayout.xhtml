@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="#{localeBean.language}"
+	  xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -7,12 +8,13 @@
 
     <h:head>
 		<meta charset="UTF-8" content="text/html"></meta>
-		<title><ui:insert name="title">Default</ui:insert> - Power Budget</title>
+		<title><ui:insert name="title">Default</ui:insert> - #{msg.genProductName}</title>
 		
 		<link rel="stylesheet" type="text/css" href="smartmenus-1.0.1/css/sm-core-css.css" />
 		<link rel="stylesheet" type="text/css" href="smartmenus-1.0.1/css/sm-mint/sm-mint.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/custom-menu.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />		
     </h:head>
 
     <h:body>
