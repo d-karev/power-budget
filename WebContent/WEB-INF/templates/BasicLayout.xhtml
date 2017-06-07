@@ -8,29 +8,36 @@
     <h:head>
 		<meta charset="UTF-8" content="text/html"></meta>
 		<title><ui:insert name="title">Default</ui:insert> - Power Budget</title>
+		
+		<link rel="stylesheet" type="text/css" href="smartmenus-1.0.1/css/sm-core-css.css" />
+		<link rel="stylesheet" type="text/css" href="smartmenus-1.0.1/css/sm-mint/sm-mint.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
     </h:head>
 
     <h:body>
-		<div id="page">
-		    <div id="header">
-				<ui:insert name="header" >
-					<ui:include src="/WEB-INF/templates/header.xhtml" />
-				</ui:insert>
-		    </div>
-	
-		    <div id="content">
-			  	<ui:insert name="content" >
-					<ui:include src="/WEB-INF/templates/commonContent.xhtml" />
-			   	</ui:insert>
-		    </div>
-	
-		    <div id="footer">
-		    	<ui:insert name="footer" >
-					<ui:include src="/WEB-INF/templates/footer.xhtml" />
-		    	</ui:insert>
-    	    </div>
-		</div>
+	    <div id="header">
+			<ui:insert name="header" >
+				<ui:include src="/WEB-INF/templates/header.xhtml" />
+			</ui:insert>
+	    </div>
+
+	    <div id="content">
+		  	<ui:insert name="content" >
+				<ui:include src="/WEB-INF/templates/commonContent.xhtml" />
+		   	</ui:insert>
+	    </div>
+
+	    <div id="footer">
+	    	<ui:insert name="footer" >
+				<ui:include src="/WEB-INF/templates/footer.xhtml" />
+	    	</ui:insert>
+   	    </div>
 		
 		<script type="text/javascript" src="js/jquery-3.2.1.min.js" />
+		<script type="text/javascript" src="smartmenus-1.0.1/jquery.smartmenus.min.js" />
+		<script type="text/javascript">
+			$('#main-menu').smartmenus();
+		</script>
     </h:body>
 </html>
