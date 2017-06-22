@@ -7,10 +7,48 @@
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
  <managed-bean>
+  <managed-bean-name>userAuth</managed-bean-name>
+  <managed-bean-class>bean.userAuth</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>generalBean</property-name>
+   <property-class>bean.generalBean</property-class>
+   <value>#{generalBean}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>sessionLocale</property-name>
+   <property-class>bean.localeBean</property-class>
+   <value>#{localeBean}</value>
+  </managed-property>
+  <managed-property>
+   <property-name>loggedUser</property-name>
+   <property-class>model.User</property-class>
+   <null-value/>
+  </managed-property>
+ </managed-bean>
+ <managed-bean>
   <managed-bean-name>localeBean</managed-bean-name>
   <managed-bean-class>bean.localeBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <navigation-rule>
+  <from-view-id>/index.xhtml</from-view-id>
+  <navigation-case>
+   <from-action>#{userAuth.signIn}</from-action>
+   <from-outcome>success</from-outcome>
+   <to-view-id>/user/home.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/user/*</from-view-id>
+  <navigation-case>
+   <from-action>#{userAuth.signOut}</from-action>
+   <from-outcome>success</from-outcome>
+   <to-view-id>/index.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
  <application>
   <locale-config>
    <default-locale>en</default-locale>

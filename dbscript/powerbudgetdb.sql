@@ -32,6 +32,7 @@ CREATE TABLE `budgetentry` (
   `type` int(11) DEFAULT NULL,
   `entrydate` datetime DEFAULT NULL,
   `comment` varchar(256) DEFAULT NULL,
+  `moneyvalue` decimal(11,11) DEFAULT NULL,
   PRIMARY KEY (`idbudgetentry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -71,6 +72,7 @@ CREATE TABLE `budgetperiodic` (
   `periodtype` int(11) DEFAULT NULL,
   `repeatcountmax` int(11) DEFAULT NULL,
   `repeatcountcurrent` int(11) DEFAULT NULL,
+  `moneyvalue` decimal(11,11) DEFAULT NULL,
   PRIMARY KEY (`idbudgetperiodic`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -87,6 +89,12 @@ CREATE TABLE `user` (
   `username` varchar(36) DEFAULT NULL,
   `realnamefirst` varchar(45) DEFAULT NULL,
   `realnamelast` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `picturelink` varchar(256) DEFAULT NULL,
+  `googleid` varchar(128) DEFAULT NULL,
+  `locale` varchar(8) DEFAULT NULL,
+  `lastlogin` datetime DEFAULT NULL,
+  `registerdate` datetime DEFAULT NULL,
   PRIMARY KEY (`iduser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -108,4 +116,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-05  2:05:34
+-- Dump completed on 2017-06-08  3:21:40

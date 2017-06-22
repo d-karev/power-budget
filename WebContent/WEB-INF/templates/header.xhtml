@@ -8,36 +8,38 @@
     <body>
 	    <ui:composition>
 	    	<div id="banner-area">
-	    		<span id="banner-text">#{msg.genProductName}</span>
+	    		<span id="banner-text"><h:link class="heading" value="#{msg.genProductName}" outcome="/index" /></span>
 	    		<h:form id="languagebox">            
 		            <h:commandButton        
 		            	value="#{msg.langBG}" 
-		            	action="#{localeBean.setLanguage('bg')}" 
-		            	class="custombutton-small left #{localeBean.language == 'bg' ? 'active' : ''}" />
+		            	action="#{userAuth.sessionLocale.setLanguage('bg')}" 
+		            	class="custombutton-small left #{userAuth.sessionLocale.language == 'bg' ? 'active' : ''}" />
 		            <h:commandButton 
 		            	value="#{msg.langEN}" 
-		            	action="#{localeBean.setLanguage('en')}" 
-		            	class="custombutton-small right #{localeBean.language == 'en' ? 'active' : ''}" /> 
+		            	action="#{userAuth.sessionLocale.setLanguage('en')}" 
+		            	class="custombutton-small right #{userAuth.sessionLocale.language == 'en' ? 'active' : ''}" /> 
 		        </h:form>	
-	    	</div>	    					    		    	
-	    	<nav class="main-nav" role="navigation">
-			  	<ul id="main-menu" class="sm sm-mint">
-	  				<li><a href="#">Item 1</a></li>
-					<li><a href="#">Item 2</a>
-						<ul>
-							<li><a href="#">Item 2-1</a>
-								<ul>
-									<li><a href="#">Item 2-2</a></li>
-									<li><a href="#">Item 2-3</a></li>
-								</ul>
-							</li>
-							<li><a href="#">Item 2-2</a></li>
-							<li><a href="#">Item 2-3</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Item 3</a></li>
-			  	</ul>			  
-			</nav>
-	    </ui:composition>
+	    	</div>
+	    	<ui:fragment rendered="#{userAuth.displayUserContent}">	
+		    	<nav class="main-nav" role="navigation">
+				  	<ul id="main-menu" class="sm sm-mint">
+		  				<li><a href="#">Item 1</a></li>
+						<li><a href="#">Item 2</a>
+							<ul>
+								<li><a href="#">Item 2-1</a>
+									<ul>
+										<li><a href="#">Item 2-2</a></li>
+										<li><a href="#">Item 2-3</a></li>
+									</ul>
+								</li>
+								<li><a href="#">Item 2-2</a></li>
+								<li><a href="#">Item 2-3</a></li>
+							</ul>
+						</li>
+						<li><h:link onclick="signOut();" value="#{msg.menuSignOut}" /></li>
+				  	</ul>			  
+				</nav>
+			</ui:fragment>
+	    </ui:composition>	    	    
     </body>
 </html>

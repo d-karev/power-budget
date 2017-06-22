@@ -1,0 +1,131 @@
+@CHARSET "UTF-8";
+
+@font-face {
+	font-family: 'Roboto-Light';
+	src: url("#{resource['/fonts/Roboto/Roboto-Light.ttf']}") format('truetype')
+}
+
+@font-face {
+	font-family: 'Oswald-Regular';
+	src: url("#{resource['/fonts/Oswald/Oswald-Regular.ttf']}") format('truetype')
+}
+
+* {
+	box-sizing: border-box;	
+}
+
+html, body {
+	flex-flow: column;
+  	display: flex;
+  	height: 100%;
+  	color: rgb(51, 51, 51);
+  	background: rgb(255, 253, 254);
+  	font-family: 'Roboto-Light', Fallback, sans-serif;
+  	font-size: 16px;
+  	min-width: 320px;
+}
+
+div {
+	display: block;
+}
+
+#header {
+	flex: 0 0 auto;
+	padding-top: 10px;	
+  	padding-left: 0px;
+  	padding-right: 0px;
+  	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: red;
+}
+
+#banner-area {
+	padding-left: 30px;
+  	padding-right: 30px;
+  	padding-bottom: 10px;
+  	display: flex;  	
+}
+
+#banner-text {
+    font-family: 'Oswald-Regular', Fallback, sans-serif;
+    font-size: 46px;
+    width: 100%;
+}
+
+#languagebox {
+	white-space: nowrap;
+	font-size: 0px;
+	width: 156px;
+	margin-top: auto;
+}
+
+@media (max-width: 480px) {
+	#banner-area {
+		display: inline-block;
+	}
+}
+
+.custombutton-small {
+	background: rgb(34, 52, 70);
+	color: rgb(255, 251, 253);
+	width: 78px;
+	height: 30px;
+	border-style: none;
+	margin: 0px;
+	padding: 0px;
+	font-size: 13px;
+	display: inline-block;
+}
+
+.custombutton-small:hover {
+	background: rgb(74, 92, 110);
+}
+
+.custombutton-small.left {
+	border-radius: 7px 0px 0px 7px;
+}
+
+.custombutton-small.right {
+	border-radius: 0px 7px 7px 0px;
+}
+
+.custombutton-small.active {
+	background: rgb(215, 0, 0);
+}
+
+.custombutton-small.active:hover {
+	background: rgb(255, 57, 57);
+}
+
+a.heading {
+	text-decoration: none;
+	color: rgb(51, 51, 51); 
+}
+
+a.heading:hover {
+	text-decoration: none;
+	color: rgb(51, 51, 51);
+	cursor: pointer; 
+}
+
+#content {
+	flex: 1 1 auto;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+  	padding-right: 30px;
+}
+
+#footer {
+	flex: 0 1 auto;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 30px;
+  	padding-right: 30px;
+	background: rgb(34, 52, 70);
+	color: rgb(255, 251, 253);
+	border-top-style: solid;
+	border-top-width: 2px;
+	border-top-color: red;
+	text-align: center;	
+}

@@ -1,6 +1,7 @@
 package model;
-// Generated Jun 5, 2017 1:55:43 AM by Hibernate Tools 5.2.3.Final
+// Generated Jun 8, 2017 3:17:01 AM by Hibernate Tools 5.2.3.Final
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -18,12 +19,14 @@ public class Budgetperiodic implements java.io.Serializable {
 	private Integer periodtype;
 	private Integer repeatcountmax;
 	private Integer repeatcountcurrent;
+	private BigDecimal moneyvalue;
 
 	public Budgetperiodic() {
 	}
 
 	public Budgetperiodic(Integer userid, Integer nomenid, Integer type, String comment, Date initialdate,
-			Integer period, Integer periodtype, Integer repeatcountmax, Integer repeatcountcurrent) {
+			Integer period, Integer periodtype, Integer repeatcountmax, Integer repeatcountcurrent,
+			BigDecimal moneyvalue) {
 		this.userid = userid;
 		this.nomenid = nomenid;
 		this.type = type;
@@ -33,6 +36,7 @@ public class Budgetperiodic implements java.io.Serializable {
 		this.periodtype = periodtype;
 		this.repeatcountmax = repeatcountmax;
 		this.repeatcountcurrent = repeatcountcurrent;
+		this.moneyvalue = moneyvalue;
 	}
 
 	public Integer getIdbudgetperiodic() {
@@ -113,6 +117,14 @@ public class Budgetperiodic implements java.io.Serializable {
 
 	public void setRepeatcountcurrent(Integer repeatcountcurrent) {
 		this.repeatcountcurrent = repeatcountcurrent;
+	}
+
+	public BigDecimal getMoneyvalue() {
+		return this.moneyvalue;
+	}
+
+	public void setMoneyvalue(BigDecimal moneyvalue) {
+		this.moneyvalue = moneyvalue;
 	}
 
 }

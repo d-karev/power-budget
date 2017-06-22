@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated Jun 5, 2017 1:55:43 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 8, 2017 3:17:01 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="powerbudgetdb" dynamic-insert="false" dynamic-update="false" mutable="true" name="model.User" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="user">
         <id name="iduser" type="java.lang.Integer">
@@ -14,6 +14,24 @@
         </property>
         <property generated="never" lazy="false" name="realnamelast" optimistic-lock="true" type="string" unique="false">
             <column length="45" name="realnamelast"/>
+        </property>
+        <property generated="never" lazy="false" name="email" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="email"/>
+        </property>
+        <property generated="never" lazy="false" name="picturelink" optimistic-lock="true" type="string" unique="false">
+            <column length="256" name="picturelink"/>
+        </property>
+        <property generated="never" lazy="false" name="googleid" optimistic-lock="true" type="string" unique="false">
+            <column length="128" name="googleid"/>
+        </property>
+        <property generated="never" lazy="false" name="locale" optimistic-lock="true" type="string" unique="false">
+            <column length="8" name="locale"/>
+        </property>
+        <property generated="never" lazy="false" name="lastlogin" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="lastlogin"/>
+        </property>
+        <property generated="never" lazy="false" name="registerdate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="registerdate"/>
         </property>
     </class>
 </hibernate-mapping>

@@ -1,6 +1,7 @@
 package model;
-// Generated Jun 5, 2017 1:55:43 AM by Hibernate Tools 5.2.3.Final
+// Generated Jun 8, 2017 3:17:01 AM by Hibernate Tools 5.2.3.Final
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -15,18 +16,20 @@ public class Budgetentry implements java.io.Serializable {
 	private Integer type;
 	private Date entrydate;
 	private String comment;
+	private BigDecimal moneyvalue;
 
 	public Budgetentry() {
 	}
 
 	public Budgetentry(Integer userid, Integer nomenid, Integer periodicalid, Integer type, Date entrydate,
-			String comment) {
+			String comment, BigDecimal moneyvalue) {
 		this.userid = userid;
 		this.nomenid = nomenid;
 		this.periodicalid = periodicalid;
 		this.type = type;
 		this.entrydate = entrydate;
 		this.comment = comment;
+		this.moneyvalue = moneyvalue;
 	}
 
 	public Integer getIdbudgetentry() {
@@ -83,6 +86,14 @@ public class Budgetentry implements java.io.Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public BigDecimal getMoneyvalue() {
+		return this.moneyvalue;
+	}
+
+	public void setMoneyvalue(BigDecimal moneyvalue) {
+		this.moneyvalue = moneyvalue;
 	}
 
 }

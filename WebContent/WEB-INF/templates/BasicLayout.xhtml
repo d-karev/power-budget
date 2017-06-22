@@ -1,27 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="#{localeBean.language}"
+<html lang="#{userAuth.sessionLocale.language}"
 	  xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
+	<f:view locale="#{userAuth.sessionLocale.locale}" />
+
     <h:head>
-		<meta charset="UTF-8" content="text/html"></meta>
+		<meta charset="UTF-8" content="text/html" />
+		<meta name="google-signin-client_id" content="#{generalBean.googleClientId}" />
+		
 		<title><ui:insert name="title">Default</ui:insert> - #{msg.genProductName}</title>
 		
-		<link rel="stylesheet" type="text/css" href="smartmenus-1.0.1/css/sm-core-css.css" />
-		<link rel="stylesheet" type="text/css" href="smartmenus-1.0.1/css/sm-mint/sm-mint.css" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/custom-menu.css" />
-		<link rel="stylesheet" type="text/css" href="css/main.css" />		
+		<h:outputStylesheet name="smartmenus-1.0.1/css/sm-core-css.css" />
+		<h:outputStylesheet name="smartmenus-1.0.1/css/sm-mint/sm-mint.css" />
+		<h:outputStylesheet name="css/bootstrap.min.css" />
+		<h:outputStylesheet name="css/custom-menu.css" />
+		<h:outputStylesheet name="css/main.css" />		
     </h:head>
 
     <h:body>
 	    <div id="header">
-			<ui:insert name="header" >
-				<ui:include src="/WEB-INF/templates/header.xhtml" />
-			</ui:insert>
+			<ui:include src="/WEB-INF/templates/header.xhtml" />
 	    </div>
 
 	    <div id="content">
@@ -31,15 +33,29 @@
 	    </div>
 
 	    <div id="footer">
-	    	<ui:insert name="footer" >
-				<ui:include src="/WEB-INF/templates/footer.xhtml" />
-	    	</ui:insert>
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
    	    </div>
+   	    
+   	    <h:form id="authFormIn" style="display: none;">
+			<h:inputHidden id="passIdToken" value="#{userAuth.tokenId}" />
+			<h:commandButton id="signInUser" action="#{userAuth.signIn}" value="" />			
+		</h:form>
+		<h:form id="authFormOut" style="display: none;">						
+			<h:commandButton id="signOutUser" action="#{userAuth.signOut}" value="" />
+		</h:form>
 		
-		<script type="text/javascript" src="js/jquery-3.2.1.min.js" />
-		<script type="text/javascript" src="smartmenus-1.0.1/jquery.smartmenus.min.js" />
-		<script type="text/javascript">
-			$('#main-menu').smartmenus();
-		</script>
+		<h:outputScript name="js/jquery-3.2.1.min.js" />
+		<h:outputScript name="smartmenus-1.0.1/jquery.smartmenus.min.js" />
+		<h:outputScript name="js/SiteAuth.js" />
+		
+		<script type="text/javascript" src="https://apis.google.com/js/platform.js?onload=renderButton" async="async" defer="defer" />
+		
+		<ui:fragment rendered="#{userAuth.displayUserContent}">
+			<script type="text/javascript">		
+				$('#main-menu').smartmenus();					
+			</script>
+		</ui:fragment>
+				
+		<ui:insert name="content-script" />
     </h:body>
 </html>

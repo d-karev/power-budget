@@ -1,5 +1,5 @@
 package model;
-// Generated Jun 5, 2017 1:55:46 AM by Hibernate Tools 5.2.3.Final
+// Generated Jun 8, 2017 3:17:03 AM by Hibernate Tools 5.2.3.Final
 
 import java.util.List;
 import javax.naming.InitialContext;

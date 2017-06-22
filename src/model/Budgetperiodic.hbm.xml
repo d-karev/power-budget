@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated Jun 5, 2017 1:55:43 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 8, 2017 3:17:01 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="powerbudgetdb" dynamic-insert="false" dynamic-update="false" mutable="true" name="model.Budgetperiodic" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="budgetperiodic">
         <id name="idbudgetperiodic" type="java.lang.Integer">
@@ -32,6 +32,9 @@
         </property>
         <property generated="never" lazy="false" name="repeatcountcurrent" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="repeatcountcurrent"/>
+        </property>
+        <property generated="never" lazy="false" name="moneyvalue" optimistic-lock="true" type="big_decimal" unique="false">
+            <column name="moneyvalue" precision="11" scale="11"/>
         </property>
     </class>
 </hibernate-mapping>

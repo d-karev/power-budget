@@ -7,7 +7,10 @@
 
     <body>
 	    <ui:composition>
-			#{msg.footerDisclaimer} - #{msg.genDevTeamName}, #{generalBean.currentYear}
+			<p>#{msg.footerDisclaimer} - <h:link value="#{msg.genDevTeamName}" outcome="/about" />, #{generalBean.currentYear}</p>
+			<ui:fragment rendered="#{userAuth.displayUserContent}">
+				<div id="my-signin2-footer" style="display: inline-block;" />
+			</ui:fragment>
 	    </ui:composition>
     </body>
 </html>
