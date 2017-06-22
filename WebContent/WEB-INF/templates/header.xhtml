@@ -23,17 +23,19 @@
 	    	<ui:fragment rendered="#{userAuth.displayUserContent}">	
 		    	<nav class="main-nav" role="navigation">
 				  	<ul id="main-menu" class="sm sm-mint">
-		  				<li><a href="#">Item 1</a></li>
-						<li><a href="#">Item 2</a>
+						<li><h:link outcome="/user/home" value="#{msg.menuProfile}" />
 							<ul>
-								<li><a href="#">Item 2-1</a>
-									<ul>
-										<li><a href="#">Item 2-2</a></li>
-										<li><a href="#">Item 2-3</a></li>
-									</ul>
-								</li>
-								<li><a href="#">Item 2-2</a></li>
-								<li><a href="#">Item 2-3</a></li>
+								<li><h:link outcome="/user/config" value="#{msg.menuConfig}" /></li>
+							</ul>
+						</li>
+						<li><h:link outcome="/user/nomens" value="#{msg.menuNomens}" />
+							<ul>
+								<li><h:link outcome="/user/nomenNew" value="#{msg.menuAddNomen}" /></li>
+							</ul>
+						</li>
+						<li><h:link outcome="/user/budgetMain" value="#{msg.menuCashMovements}" />
+							<ul>
+								<li><h:link outcome="/user/budgetNew" value="#{msg.menuAddMovement}" /></li>
 							</ul>
 						</li>
 						<li><h:link onclick="signOut();" value="#{msg.menuSignOut}" /></li>

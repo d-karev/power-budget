@@ -18,34 +18,31 @@ public class BudgetnomenHome {
 
 	private static final Log log = LogFactory.getLog(BudgetnomenHome.class);
 
-	private final SessionFactory sessionFactory = getSessionFactory();
-
-	protected SessionFactory getSessionFactory() {
-		try {
-			return (SessionFactory) new InitialContext().lookup("SessionFactory");
-		} catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
-		}
-	}
+	private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 	public void persist(Budgetnomen transientInstance) {
 		log.debug("persisting Budgetnomen instance");
-		try {
+		sessionFactory.getCurrentSession().beginTransaction();
+		try {			
 			sessionFactory.getCurrentSession().persist(transientInstance);
+			sessionFactory.getCurrentSession().getTransaction().commit();
 			log.debug("persist successful");
 		} catch (RuntimeException re) {
-			log.error("persist failed", re);
+			sessionFactory.getCurrentSession().getTransaction().rollback();
+			log.error("persist failed", re);			
 			throw re;
 		}
 	}
 
 	public void attachDirty(Budgetnomen instance) {
 		log.debug("attaching dirty Budgetnomen instance");
+		sessionFactory.getCurrentSession().beginTransaction();
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
+			sessionFactory.getCurrentSession().getTransaction().commit();
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
+			sessionFactory.getCurrentSession().getTransaction().rollback();
 			log.error("attach failed", re);
 			throw re;
 		}
@@ -53,10 +50,13 @@ public class BudgetnomenHome {
 
 	public void attachClean(Budgetnomen instance) {
 		log.debug("attaching clean Budgetnomen instance");
+		sessionFactory.getCurrentSession().beginTransaction();
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
+			sessionFactory.getCurrentSession().getTransaction().commit();
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
+			sessionFactory.getCurrentSession().getTransaction().rollback();
 			log.error("attach failed", re);
 			throw re;
 		}
@@ -64,10 +64,13 @@ public class BudgetnomenHome {
 
 	public void delete(Budgetnomen persistentInstance) {
 		log.debug("deleting Budgetnomen instance");
+		sessionFactory.getCurrentSession().beginTransaction();
 		try {
 			sessionFactory.getCurrentSession().delete(persistentInstance);
+			sessionFactory.getCurrentSession().getTransaction().commit();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
+			sessionFactory.getCurrentSession().getTransaction().rollback();
 			log.error("delete failed", re);
 			throw re;
 		}
@@ -75,11 +78,14 @@ public class BudgetnomenHome {
 
 	public Budgetnomen merge(Budgetnomen detachedInstance) {
 		log.debug("merging Budgetnomen instance");
+		sessionFactory.getCurrentSession().beginTransaction();
 		try {
 			Budgetnomen result = (Budgetnomen) sessionFactory.getCurrentSession().merge(detachedInstance);
+			sessionFactory.getCurrentSession().getTransaction().commit();
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
+			sessionFactory.getCurrentSession().getTransaction().rollback();
 			log.error("merge failed", re);
 			throw re;
 		}
@@ -87,6 +93,7 @@ public class BudgetnomenHome {
 
 	public Budgetnomen findById(java.lang.Integer id) {
 		log.debug("getting Budgetnomen instance with id: " + id);
+		sessionFactory.getCurrentSession().beginTransaction();
 		try {
 			Budgetnomen instance = (Budgetnomen) sessionFactory.getCurrentSession().get("model.Budgetnomen", id);
 			if (instance == null) {
@@ -94,8 +101,10 @@ public class BudgetnomenHome {
 			} else {
 				log.debug("get successful, instance found");
 			}
+			sessionFactory.getCurrentSession().getTransaction().commit();
 			return instance;
 		} catch (RuntimeException re) {
+			sessionFactory.getCurrentSession().getTransaction().rollback();
 			log.error("get failed", re);
 			throw re;
 		}
@@ -103,12 +112,15 @@ public class BudgetnomenHome {
 
 	public List findByExample(Budgetnomen instance) {
 		log.debug("finding Budgetnomen instance by example");
+		sessionFactory.getCurrentSession().beginTransaction();
 		try {
 			List results = sessionFactory.getCurrentSession().createCriteria("model.Budgetnomen")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: " + results.size());
+			sessionFactory.getCurrentSession().getTransaction().commit();
 			return results;
 		} catch (RuntimeException re) {
+			sessionFactory.getCurrentSession().getTransaction().rollback();
 			log.error("find by example failed", re);
 			throw re;
 		}

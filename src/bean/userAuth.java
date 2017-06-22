@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
@@ -75,8 +76,6 @@ public class userAuth {
 			String userId = payload.getSubject();
 			System.out.println("User ID: " + userId);
 			
-			// TODO Fix data access model...
-			/*
 			User usr = new User();
 			usr.setGoogleid(userId);
 			
@@ -85,10 +84,9 @@ public class userAuth {
 			
 			// Get profile information from payload
 			String email = payload.getEmail();
-			//boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
 			String name = (String) payload.get("name");
 			String pictureUrl = (String) payload.get("picture");
-			//String locale = (String) payload.get("locale");
+			String locale = (String) payload.get("locale");
 			String familyName = (String) payload.get("family_name");
 			String givenName = (String) payload.get("given_name");
 			
@@ -102,17 +100,29 @@ public class userAuth {
 			usr.setPicturelink(pictureUrl);
 			usr.setUsername(name);
 			usr.setRealnamefirst(givenName);
-			usr.setRealnamelast(familyName);		
+			usr.setRealnamelast(familyName);
+			
+			if (usr.getLocale() == null || usr.getLocale().equals(""))
+				usr.setLocale(locale.equals("bg") ? "bg" : "en");									
 			
 			try {
-				usrDb.persist(usr);
+				Date userDate = new Date();
+				usr.setLastlogin(userDate);
+				
+				if (usrResult.size() == 0) {
+					usr.setRegisterdate(userDate);
+					usrDb.persist(usr);
+				} else {
+					usrDb.merge(usr);
+				}
 			} catch (Exception ex) {
-				System.out.println("Exception was raised while persisting user!");
+				System.out.println("Exception was raised while persisting/merging user!");
 				return ActionOutcome.outcomeFailure;
 			}
 			
+			
 			setLoggedUser(usr);
-			*/			
+					
 		} else {
 			System.out.println("Invalid ID token.");
 			return ActionOutcome.outcomeFailure;

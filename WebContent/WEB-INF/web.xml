@@ -14,6 +14,9 @@
  <listener>
   <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
  </listener>
+ <listener>
+  <listener-class>model.HibernateListener</listener-class>
+ </listener>
  <servlet>
   <servlet-name>Faces Servlet</servlet-name>
   <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
