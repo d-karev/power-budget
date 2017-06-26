@@ -29,6 +29,28 @@ div {
 	display: block;
 }
 
+h2 {
+	margin-top: 25px;
+	margin-bottom: 15px;
+	font-size: 32px;
+}
+
+h3 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 26px;
+}
+
+h4 {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	font-size: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Oswald-Regular', Fallback, sans-serif;
+}
+
 #header {
 	flex: 0 0 auto;
 	padding-top: 10px;	
@@ -128,4 +150,16 @@ a.heading:hover {
 	border-top-width: 2px;
 	border-top-color: red;
 	text-align: center;	
+}
+
+#formInputContainer {
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-left-color: red;
+	padding-left: 15px;
+}
+
+#pageTitle {
+	font-family: 'Oswald-Regular', Fallback, sans-serif;
+	font-size: 32px;
 }

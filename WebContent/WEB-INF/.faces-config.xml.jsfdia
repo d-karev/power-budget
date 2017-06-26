@@ -18,4 +18,18 @@
     TITLE="#{userAuth.signOut}:success" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#user#nomenNew.xhtml"
+  PATH="/user/nomenNew.xhtml" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#user#nomenNew.xhtml:0" NAME="item"
+   PATH="/user/nomenNew.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success::#user#nomens.xhtml" NAME="output"
+    PATH="/user/nomens.xhtml" TARGET="rules:#user#nomens.xhtml"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="successNew::#user#nomenNew.xhtml"
+    NAME="output1" PATH="/user/nomenNew.xhtml"
+    TARGET="rules:#user#nomenNew.xhtml" TITLE="successNew" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#user#nomens.xhtml" PATH="/user/nomens.xhtml"
+  SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

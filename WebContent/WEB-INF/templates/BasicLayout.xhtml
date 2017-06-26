@@ -22,6 +22,7 @@
     </h:head>
 
     <h:body>
+    	<p:growl id="growlSuccess" showDetail="false" sticky="false" life="2500" />
 	    <div id="header">
 			<ui:include src="/WEB-INF/templates/header.xhtml" />
 	    </div>
@@ -45,6 +46,7 @@
 		</h:form>
 		
 		<h:outputScript name="js/jquery-3.2.1.min.js" />
+		<h:outputScript name="js/jquery-ui.min.js" />
 		<h:outputScript name="smartmenus-1.0.1/jquery.smartmenus.min.js" />
 		<h:outputScript name="js/SiteAuth.js" />
 		

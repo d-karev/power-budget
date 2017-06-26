@@ -31,6 +31,16 @@
   <managed-bean-class>bean.localeBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>nomenNewBean</managed-bean-name>
+  <managed-bean-class>bean.nomenNewBean</managed-bean-class>
+  <managed-bean-scope>view</managed-bean-scope>
+  <managed-property>
+   <property-name>userAuth</property-name>
+   <property-class>bean.userAuth</property-class>
+   <value>#{userAuth}</value>
+  </managed-property>
+ </managed-bean>
  <navigation-rule>
   <from-view-id>/index.xhtml</from-view-id>
   <navigation-case>
@@ -47,6 +57,18 @@
    <from-outcome>success</from-outcome>
    <to-view-id>/index.xhtml</to-view-id>
    <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/user/nomenNew.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>success</from-outcome>
+   <to-view-id>/user/nomens.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>successNew</from-outcome>
+   <to-view-id>/user/nomenNew.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application>

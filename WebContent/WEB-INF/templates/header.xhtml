@@ -23,22 +23,22 @@
 	    	<ui:fragment rendered="#{userAuth.displayUserContent}">	
 		    	<nav class="main-nav" role="navigation">
 				  	<ul id="main-menu" class="sm sm-mint">
-						<li><h:link outcome="/user/home" value="#{msg.menuProfile}" />
+						<li><h:link outcome="/user/home"><span class="glyphicon glyphicon-user" /> #{msg.menuProfile}</h:link>
 							<ul>
-								<li><h:link outcome="/user/config" value="#{msg.menuConfig}" /></li>
+								<li><h:link outcome="/user/config"><span class="glyphicon glyphicon-cog" /> #{msg.menuConfig}</h:link></li>
 							</ul>
 						</li>
-						<li><h:link outcome="/user/nomens" value="#{msg.menuNomens}" />
+						<li><h:link outcome="/user/nomens"><span class="glyphicon glyphicon-list" /> #{msg.menuNomens}</h:link>
 							<ul>
-								<li><h:link outcome="/user/nomenNew" value="#{msg.menuAddNomen}" /></li>
+								<li><h:link outcome="/user/nomenNew"><span class="glyphicon glyphicon-plus" /> #{msg.menuAddNomen}</h:link></li>
 							</ul>
 						</li>
-						<li><h:link outcome="/user/budgetMain" value="#{msg.menuCashMovements}" />
+						<li><h:link outcome="/user/budgetMain"><span class="glyphicon glyphicon-usd" /> #{msg.menuCashMovements}</h:link>
 							<ul>
-								<li><h:link outcome="/user/budgetNew" value="#{msg.menuAddMovement}" /></li>
+								<li><h:link outcome="/user/budgetNew"><span class="glyphicon glyphicon-plus" /> #{msg.menuAddMovement}</h:link></li>
 							</ul>
 						</li>
-						<li><h:link onclick="signOut();" value="#{msg.menuSignOut}" /></li>
+						<li><h:link onclick="signOut();"><span class="glyphicon glyphicon-off" /> #{msg.menuSignOut}</h:link></li>
 				  	</ul>			  
 				</nav>
 			</ui:fragment>

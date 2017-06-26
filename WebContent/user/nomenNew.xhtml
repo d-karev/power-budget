@@ -1,15 +1,38 @@
 <ui:composition 
-	template="/WEB-INF/templates/BasicLayout.xhtml" 
+	template="/WEB-INF/templates/SubmitFormLayout.xhtml" 
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
+	<ui:param name="submitBeanParam" value="#{nomenNewBean}" />
+	<ui:param name="cancelOutcomeParam" value="/user/nomens" />
+
 	<ui:define name="title">#{msg.pageUserAddNomenTitle}</ui:define>	
 	
-	<ui:define name="content">
-		TODO: Insert new nomen form here......
+	<ui:define name="submitForm">			
+		<h3>#{msg.commonName}</h3>
+		<p:inputText id="nomenName" value="#{nomenNewBean.entry.name}" required="true" />
+		<p:message for="nomenName" />
+		
+		<h3>#{msg.commonType}</h3>
+		<p:selectOneButton id="nomenType" value="#{nomenNewBean.entry.type}" required="true">
+		    <f:selectItem itemLabel="#{msg.commonExpense}" itemValue="#{generalBean.enumBudgetType.expense}" />
+		    <f:selectItem itemLabel="#{msg.commonIncome}" itemValue="#{generalBean.enumBudgetType.income}" />
+		</p:selectOneButton>
+		<p:message for="nomenType" />
+		
+		<h3>#{msg.commonDescription}</h3>
+		<p:inputTextarea
+			id="nomenComment" 
+			value="#{nomenNewBean.entry.comment}" 
+			counter="displayRemainingChars" 
+			maxlength="256" 
+			counterTemplate="#{msg.commonRemainingCharsCounter}" 
+			autoResize="false" />
+		<p:message for="nomenComment" />
+  		<h:outputText id="displayRemainingChars" />	    					
 	</ui:define>
 	
 </ui:composition>
