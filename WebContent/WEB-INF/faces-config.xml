@@ -71,6 +71,10 @@
    <to-view-id>/user/nomenNew.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
+ <validator>
+  <validator-id>nomenNameValidator</validator-id>
+  <validator-class>validators.NomenNameValidator</validator-class>
+ </validator>
  <application>
   <locale-config>
    <default-locale>en</default-locale>

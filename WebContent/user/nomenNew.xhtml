@@ -13,8 +13,11 @@
 	
 	<ui:define name="submitForm">			
 		<h3>#{msg.commonName}</h3>
-		<p:inputText id="nomenName" value="#{nomenNewBean.entry.name}" required="true" />
-		<p:message for="nomenName" />
+		<p:inputText id="nomenName" value="#{nomenNewBean.entry.name}" required="true" >
+			<f:validator validatorId="nomenNameValidator" />
+			<f:attribute name="userId" value="#{userAuth.loggedUser.iduser}" />	
+		</p:inputText> 
+		<p:message for="nomenName" />		
 		
 		<h3>#{msg.commonType}</h3>
 		<p:selectOneButton id="nomenType" value="#{nomenNewBean.entry.type}" required="true">
@@ -30,7 +33,7 @@
 			counter="displayRemainingChars" 
 			maxlength="256" 
 			counterTemplate="#{msg.commonRemainingCharsCounter}" 
-			autoResize="false" />
+			autoResize="false" /> <br />
 		<p:message for="nomenComment" />
   		<h:outputText id="displayRemainingChars" />	    					
 	</ui:define>

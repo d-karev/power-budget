@@ -119,6 +119,10 @@ h1, h2, h3, h4, h5, h6 {
 	background: rgb(255, 57, 57);
 }
 
+.ui-message {
+	display: inline-block;
+}
+
 a.heading {
 	text-decoration: none;
 	color: rgb(51, 51, 51); 
