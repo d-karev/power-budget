@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated Jun 8, 2017 3:17:01 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 27, 2017 8:48:39 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="powerbudgetdb" dynamic-insert="false" dynamic-update="false" mutable="true" name="model.Budgetentry" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="budgetentry">
         <id name="idbudgetentry" type="java.lang.Integer">
             <column name="idbudgetentry"/>
             <generator class="identity"/>
         </id>
+        <many-to-one class="model.Budgetnomen" embed-xml="true" fetch="select" insert="true" name="budgetnomen" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="nomenid"/>
+        </many-to-one>
         <property generated="never" lazy="false" name="userid" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="userid"/>
-        </property>
-        <property generated="never" lazy="false" name="nomenid" optimistic-lock="true" type="java.lang.Integer" unique="false">
-            <column name="nomenid"/>
         </property>
         <property generated="never" lazy="false" name="periodicalid" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="periodicalid"/>

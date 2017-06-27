@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `powerbudgetdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `powerbudgetdb`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: powerbudgetdb
@@ -33,7 +31,9 @@ CREATE TABLE `budgetentry` (
   `entrydate` datetime DEFAULT NULL,
   `comment` varchar(256) DEFAULT NULL,
   `moneyvalue` decimal(11,11) DEFAULT NULL,
-  PRIMARY KEY (`idbudgetentry`)
+  PRIMARY KEY (`idbudgetentry`),
+  KEY `NomenTypeKey_idx` (`nomenid`),
+  CONSTRAINT `NomenTypeKey` FOREIGN KEY (`nomenid`) REFERENCES `budgetnomen` (`idbudgetnomens`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -96,7 +96,7 @@ CREATE TABLE `user` (
   `lastlogin` datetime DEFAULT NULL,
   `registerdate` datetime DEFAULT NULL,
   PRIMARY KEY (`iduser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,4 +116,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-08  3:21:40
+-- Dump completed on 2017-06-27  9:00:10
