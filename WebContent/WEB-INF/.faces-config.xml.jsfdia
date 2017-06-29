@@ -36,4 +36,22 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#user#nomens.xhtml" PATH="/user/nomens.xhtml"
   SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#user#budgetNew.xhtml"
+  PATH="/user/budgetNew.xhtml" SHAPE="32,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#user#budgetNew.xhtml:0" NAME="item"
+   PATH="/user/budgetNew.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{submitBeanParam.saveEntry(false)}:#user#budgetMain.xhtml"
+    NAME="output" PATH="/user/budgetMain.xhtml"
+    TARGET="rules:#user#budgetMain.xhtml"
+    TITLE="#{submitBeanParam.saveEntry(false)}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successNew:#{submitBeanParam.saveEntry(true)}:#user#budgetNew.xhtml"
+    NAME="output1" PATH="/user/budgetNew.xhtml"
+    TARGET="rules:#user#budgetNew.xhtml"
+    TITLE="#{submitBeanParam.saveEntry(true)}:successNew" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#user#budgetMain.xhtml"
+  PATH="/user/budgetMain.xhtml" SHAPE="256,401,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

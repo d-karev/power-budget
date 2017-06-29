@@ -9,13 +9,13 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
 import customEnum.ActionOutcome;
-import model.Budgetnomen;
-import model.BudgetnomenHome;
+import model.Budgetentry;
+import model.BudgetentryHome;
 
-public class nomensBean {
+public class budgetMainBean {
 
 	private bean.userAuth userAuth;
-	private List<Budgetnomen> nomenList = new ArrayList<Budgetnomen>();
+	private List<Budgetentry> entryList = new ArrayList<Budgetentry>();
 	
 	public bean.userAuth getUserAuth() {
 		return userAuth;
@@ -24,28 +24,41 @@ public class nomensBean {
 	public void setUserAuth(bean.userAuth userAuth) {
 		this.userAuth = userAuth;
 	}
-	
-	public List<Budgetnomen> getNomenList() {
-		return nomenList;
+
+	public List<Budgetentry> getEntryList() {
+		return entryList;
 	}
 	
 	@PostConstruct
 	public void init() {
-		loadNomens();
+		loadEntries();
 	}
 	
-	private void loadNomens() {
-		Budgetnomen bNomen = new Budgetnomen();
-		bNomen.setUserid(userAuth.getLoggedUser().getIduser());
+	private void loadEntries() {
+		Budgetentry bEntry = new Budgetentry();
+		bEntry.setUserid(userAuth.getLoggedUser().getIduser());
 		
-		BudgetnomenHome bNomenDb = new BudgetnomenHome();
-		nomenList = bNomenDb.findByExample(bNomen);
+		BudgetentryHome bNomenDb = new BudgetentryHome();
+		entryList = bNomenDb.findByExample(bEntry);
 	}
 	
-	public String getDeleteConfirmationMessage(String name) {
+	public String getDeleteConfirmationMessage(int id) {
+		String descr = "";
+		
 		return String.format(
 				userAuth.getSessionLocale().getMsgResource().getString("dialogDeleteEntry"), 
-				name);
+				descr);
+	}
+	
+	public String getStringValueForType(int nomenType) {
+		String result = "";
+		
+		if (nomenType == userAuth.getGeneralBean().getEnumBudgetType().getIncome())
+			return userAuth.getSessionLocale().getMsgResource().getString("commonIncome");
+		else if (nomenType == userAuth.getGeneralBean().getEnumBudgetType().getExpense())
+			return userAuth.getSessionLocale().getMsgResource().getString("commonExpense");
+		
+		return result;
 	}
 	
 	public String deleteEntry(int id) {		
@@ -55,10 +68,11 @@ public class nomensBean {
 		
 		FacesContext context = FacesContext.getCurrentInstance();	
 		
-		try {
-			BudgetnomenHome bNomenDb = new BudgetnomenHome();
-			bNomenDb.deleteNomenAndUpdateEntries(id);
-			loadNomens();
+		try {			
+			BudgetentryHome bEntryDb = new BudgetentryHome();
+			Budgetentry bEntry = bEntryDb.findById(id);
+			bEntryDb.delete(bEntry);
+			loadEntries();
 			
 			success = true;
 			fSvr = FacesMessage.SEVERITY_INFO;
@@ -78,16 +92,5 @@ public class nomensBean {
 		} else {
 			return ActionOutcome.outcomeFailure;
 		}
-	}
-	
-	public String getStringValueForType(int nomenType) {
-		String result = "";
-		
-		if (nomenType == userAuth.getGeneralBean().getEnumBudgetType().getIncome())
-			return userAuth.getSessionLocale().getMsgResource().getString("commonIncome");
-		else if (nomenType == userAuth.getGeneralBean().getEnumBudgetType().getExpense())
-			return userAuth.getSessionLocale().getMsgResource().getString("commonExpense");
-		
-		return result;
 	}
 }

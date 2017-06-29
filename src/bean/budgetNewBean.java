@@ -1,58 +1,61 @@
 package bean;
 
+import customEnum.ActionOutcome;
+import model.Budgetentry;
+import model.BudgetentryHome;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
-import customEnum.ActionOutcome;
-import model.Budgetnomen;
-import model.BudgetnomenHome;
+import bean.userAuth;
 
-public class nomenNewBean {	
-	private Budgetnomen entry = new Budgetnomen();
-	private bean.userAuth userAuth;	
-	
-	private boolean editMode = false;	
+public class budgetNewBean {
+
+	private userAuth userAuth;
 	private int id;
+	private boolean editMode = false;	
+	
+	private Budgetentry entry = new Budgetentry();
 	
 	public boolean getEditMode() {
 		return editMode;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int value) {
-		id = value;
-	}
-	
-	public Budgetnomen getEntry() {
-		return entry;
-	}
-	
-	public void setEntry(Budgetnomen value) {
-		entry = value;
-	}
-	
-	public bean.userAuth getUserAuth() {
+	public userAuth getUserAuth() {
 		return userAuth;
 	}
 	
-	public void setUserAuth(bean.userAuth userAuth) {
-		this.userAuth = userAuth;
+	public void setUserAuth(userAuth authBean) {
+		this.userAuth = authBean;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public Budgetentry getEntry() {
+		return entry;
+	}
+
+	public void setEntry(Budgetentry entry) {
+		this.entry = entry;
 	}
 	
 	public String prepareEdit() {
 		if (getId() < 1)
 			return ActionOutcome.outcomeEmpty;
 		
-		Budgetnomen findEntry = null;
+		Budgetentry findEntry = null;
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		
 		try {
-			BudgetnomenHome findEntryDb = new BudgetnomenHome();
+			BudgetentryHome findEntryDb = new BudgetentryHome();
 			findEntry = findEntryDb.findById(id);			
 		} catch (Exception ex) {
 			Severity fSvr = FacesMessage.SEVERITY_ERROR;
@@ -76,16 +79,16 @@ public class nomenNewBean {
 		}				
 	}
 	
-	public String saveEntry(Boolean makeNew) {	
+	public String saveEntry(boolean makeNew) {
 		String fMsg;
 		Severity fSvr;
-		boolean success;						
+		boolean success;	
 		
 		try {		
 			if (entry.getUserid() == null || entry.getUserid() < 1)
 				entry.setUserid(userAuth.getLoggedUser().getIduser());
-			BudgetnomenHome nomenDb = new BudgetnomenHome();
-			if(entry.getIdbudgetnomens() != null && entry.getIdbudgetnomens() > 1)
+			BudgetentryHome nomenDb = new BudgetentryHome();
+			if(entry.getIdbudgetentry() != null && entry.getIdbudgetentry() > 1)
 				nomenDb.merge(entry);
 			else
 				nomenDb.persist(entry);						
@@ -112,5 +115,5 @@ public class nomenNewBean {
 		} else {
 			return ActionOutcome.outcomeFailure;
 		}
-	}	
+	}
 }

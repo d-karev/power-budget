@@ -1,15 +1,41 @@
 <ui:composition 
-	template="/WEB-INF/templates/BasicLayout.xhtml" 
+	template="/WEB-INF/templates/GridFormLayout.xhtml" 
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+		
+	<ui:param name="editEntryOutcomeParam" value="/user/budgetNew" />
+	<ui:param name="entryIdParam" value="#{entry.idbudgetentry}" />
+	<ui:param name="pageBeanParam" value="#{budgetMainBean}" />
+	<ui:param name="entryListParam" value="#{budgetMainBean.entryList}" />
+	<ui:param name="deleteWarningParam" value="#{budgetMainBean.getDeleteConfirmationMessage(entry.idbudgetentry)}" />
+	<ui:param name="deleteEntryActionParam" value="deleteEntry" />	
+	<ui:param name="newEntryTitleParam" value="#{msg.menuAddMovement}" />
 
 	<ui:define name="title">#{msg.pageUserMovementsTitle}</ui:define>	
 	
-	<ui:define name="content">
-		TODO: Insert budget grid here......
-	</ui:define>
+	<ui:define name="dataColumns">
+		<p:column headerText="#{msg.commonName}">
+	        <h:outputText value="#{entry.budgetnomen.name}" />
+	    </p:column>
 	
+		<p:column headerText="#{msg.commonType}">
+	        <h:outputText value="#{budgetMainBean.getStringValueForType(entry.type)}" />
+	    </p:column>
+	    
+	    <p:column headerText="#{msg.commonEntryDate}">
+	        <h:outputText value="#{entry.entrydate}" />
+	    </p:column>
+	    
+	    <p:column headerText="#{msg.commonMoneyValue}">
+	        <h:outputText value="#{entry.moneyvalue}" />
+	    </p:column>
+	    
+	    <p:column headerText="#{msg.commonDescription}">
+	        <h:outputText value="#{entry.comment}" />
+	    </p:column>		   	    	    	    	    
+	</ui:define>	
 </ui:composition>
