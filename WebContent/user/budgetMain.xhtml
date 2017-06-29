@@ -27,7 +27,9 @@
 	    </p:column>
 	    
 	    <p:column headerText="#{msg.commonEntryDate}">
-	        <h:outputText value="#{entry.entrydate}" />
+	        <h:outputText value="#{entry.entrydate}">
+	        	<f:convertDateTime timeZone="GMT+3" />
+	        </h:outputText>
 	    </p:column>
 	    
 	    <p:column headerText="#{msg.commonMoneyValue}">
