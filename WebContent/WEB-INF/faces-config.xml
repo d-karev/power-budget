@@ -30,10 +30,25 @@
   <managed-bean-name>localeBean</managed-bean-name>
   <managed-bean-class>bean.localeBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>msgResource</property-name>
+   <property-class>java.util.ResourceBundle</property-class>
+   <value>#{msg}</value>
+  </managed-property>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>nomenNewBean</managed-bean-name>
   <managed-bean-class>bean.nomenNewBean</managed-bean-class>
+  <managed-bean-scope>view</managed-bean-scope>
+  <managed-property>
+   <property-name>userAuth</property-name>
+   <property-class>bean.userAuth</property-class>
+   <value>#{userAuth}</value>
+  </managed-property>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>nomensBean</managed-bean-name>
+  <managed-bean-class>bean.nomensBean</managed-bean-class>
   <managed-bean-scope>view</managed-bean-scope>
   <managed-property>
    <property-name>userAuth</property-name>
@@ -62,11 +77,13 @@
  <navigation-rule>
   <from-view-id>/user/nomenNew.xhtml</from-view-id>
   <navigation-case>
+   <from-action>#{submitBeanParam.saveEntry(false)}</from-action>
    <from-outcome>success</from-outcome>
    <to-view-id>/user/nomens.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
   <navigation-case>
+   <from-action>#{submitBeanParam.saveEntry(true)}</from-action>
    <from-outcome>successNew</from-outcome>
    <to-view-id>/user/nomenNew.xhtml</to-view-id>
   </navigation-case>

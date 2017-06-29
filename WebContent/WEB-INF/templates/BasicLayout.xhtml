@@ -4,21 +4,23 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	<f:view locale="#{userAuth.sessionLocale.locale}" />
+
+	<ui:insert name="metadata" />
 
     <h:head>
 		<meta charset="UTF-8" content="text/html" />
 		<meta name="google-signin-client_id" content="#{generalBean.googleClientId}" />
 		
-		<title><ui:insert name="title">Default</ui:insert> - #{msg.genProductName}</title>
+		<title><ui:insert name="title">Default</ui:insert> - #{msg.genProductName}</title>				
 		
 		<h:outputStylesheet name="smartmenus-1.0.1/css/sm-core-css.css" />
 		<h:outputStylesheet name="smartmenus-1.0.1/css/sm-mint/sm-mint.css" />
 		<h:outputStylesheet name="css/bootstrap.min.css" />
-		<h:outputStylesheet name="css/custom-menu.css" />
-		<h:outputStylesheet name="css/main.css" />		
+		<h:outputStylesheet name="css/custom-menu.css" />				
     </h:head>
 
     <h:body>
@@ -45,7 +47,7 @@
 			<h:commandButton id="signOutUser" action="#{userAuth.signOut}" value="" />
 		</h:form>
 		
-		<h:outputScript name="js/jquery-3.2.1.min.js" />
+		<h:outputScript name="js/jquery-2.2.4.min.js" />
 		<h:outputScript name="js/jquery-ui.min.js" />
 		<h:outputScript name="smartmenus-1.0.1/jquery.smartmenus.min.js" />
 		<h:outputScript name="js/SiteAuth.js" />
@@ -59,5 +61,6 @@
 		</ui:fragment>
 				
 		<ui:insert name="content-script" />
+		<h:outputStylesheet name="css/main.css" />
     </h:body>
 </html>

@@ -4,18 +4,26 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">	
 
 	<ui:param name="submitBeanParam" value="#{nomenNewBean}" />
 	<ui:param name="cancelOutcomeParam" value="/user/nomens" />
 
-	<ui:define name="title">#{msg.pageUserAddNomenTitle}</ui:define>	
+	<ui:define name="title">#{nomenNewBean.editMode ? msg.pageUserEditNomenTitle : msg.pageUserAddNomenTitle}</ui:define>	
+	
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="id" value="#{nomenNewBean.id}" />
+			<f:viewAction action="#{nomenNewBean.prepareEdit()}" />
+		</f:metadata>
+	</ui:define>
 	
 	<ui:define name="submitForm">			
 		<h3>#{msg.commonName}</h3>
 		<p:inputText id="nomenName" value="#{nomenNewBean.entry.name}" required="true" >
 			<f:validator validatorId="nomenNameValidator" />
-			<f:attribute name="userId" value="#{userAuth.loggedUser.iduser}" />	
+			<f:attribute name="userId" value="#{userAuth.loggedUser.iduser}" />
+			<f:attribute name="entryId" value="#{nomenNewBean.entry.idbudgetnomens}" />		
 		</p:inputText> 
 		<p:message for="nomenName" />		
 		

@@ -1,12 +1,14 @@
 package bean;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 
 public class localeBean {	
     private Locale locale;
+	private ResourceBundle msgResource;
 
     @PostConstruct
     public void init() {
@@ -26,7 +28,21 @@ public class localeBean {
 
     public void setLanguage(String language) {
         locale = new Locale(language);
-        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+        FacesContext cont = FacesContext.getCurrentInstance(); 
+        cont.getViewRoot().setLocale(locale);
+        setMsgResource(cont.getApplication().getResourceBundle(cont, "msg"));
         System.out.println("Locale set to: " + locale.getLanguage());
     }
+
+	
+	public ResourceBundle getMsgResource() {
+		return msgResource;
+	}
+
+	
+	public void setMsgResource(ResourceBundle msgResource) {
+		this.msgResource = msgResource;
+	}
+
+
 }

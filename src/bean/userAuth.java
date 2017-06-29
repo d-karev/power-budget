@@ -25,7 +25,7 @@ public class userAuth {
 	private model.User loggedUser; 
 	
 	private Boolean displayUserContent = false;
-	private Boolean allowAccessToUserPages = false;
+	private Boolean allowAccessToUserPages = false;		
 	
 	private String tokenId;	
 	
@@ -173,6 +173,4 @@ public class userAuth {
 	public void setSessionLocale(bean.localeBean sessionLocale) {
 		this.sessionLocale = sessionLocale;
 	}
-
-
 }

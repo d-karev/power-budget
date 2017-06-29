@@ -76,6 +76,38 @@ public class BudgetnomenHome {
 		}
 	}
 
+	public void deleteNomenAndUpdateEntries(int id) {
+		log.debug("deleting Budgetnomen instance");
+		sessionFactory.getCurrentSession().beginTransaction();
+		try {			
+			Budgetnomen bNomen = (Budgetnomen) sessionFactory.getCurrentSession().get("model.Budgetnomen", id);
+			
+			if (bNomen != null) {
+				Budgetentry bEntry = new Budgetentry();
+				bEntry.setBudgetnomen(bNomen);
+				
+				List<Budgetentry> entryList = sessionFactory.getCurrentSession().createCriteria("model.Budgetentry")
+						.add(Example.create(bEntry)).list();
+				
+				for (int k = 0; k < entryList.size(); k++) {
+					bEntry = entryList.get(k);
+					bEntry.setBudgetnomen(null);
+					
+					sessionFactory.getCurrentSession().merge(bEntry);
+				}
+				
+				sessionFactory.getCurrentSession().delete(bNomen);
+			}
+			
+			sessionFactory.getCurrentSession().getTransaction().commit();
+			log.debug("delete successful");
+		} catch (RuntimeException re) {
+			sessionFactory.getCurrentSession().getTransaction().rollback();
+			log.error("delete failed", re);
+			throw re;
+		}
+	}
+	
 	public Budgetnomen merge(Budgetnomen detachedInstance) {
 		log.debug("merging Budgetnomen instance");
 		sessionFactory.getCurrentSession().beginTransaction();

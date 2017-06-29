@@ -1,15 +1,32 @@
 <ui:composition 
-	template="/WEB-INF/templates/BasicLayout.xhtml" 
+	template="/WEB-INF/templates/GridFormLayout.xhtml" 
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+		
+	<ui:param name="editEntryOutcomeParam" value="/user/nomenNew" />
+	<ui:param name="entryIdParam" value="#{entry.idbudgetnomens}" />
+	<ui:param name="pageBeanParam" value="#{nomensBean}" />
+	<ui:param name="entryListParam" value="#{nomensBean.nomenList}" />
+	<ui:param name="deleteWarningParam" value="#{nomensBean.getDeleteConfirmationMessage(entry.name)}" />
+	<ui:param name="deleteEntryActionParam" value="deleteEntry" />	
 
 	<ui:define name="title">#{msg.pageUserNomensTitle}</ui:define>	
 	
-	<ui:define name="content">
-		TODO: Insert nomen grid here......
-	</ui:define>
-	
+	<ui:define name="dataColumns">
+		<p:column headerText="#{msg.commonName}">
+	        <h:outputText value="#{entry.name}" />
+	    </p:column>		   
+	    
+	    <p:column headerText="#{msg.commonType}">
+	        <h:outputText value="#{nomensBean.getStringValueForType(entry.type)}" />
+	    </p:column>
+	    
+	    <p:column headerText="#{msg.commonDescription}">
+	        <h:outputText value="#{entry.comment}" />
+	    </p:column>
+	</ui:define>	
 </ui:composition>
