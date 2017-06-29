@@ -1,5 +1,5 @@
 package model;
-// Generated Jun 27, 2017 8:48:39 AM by Hibernate Tools 5.2.3.Final
+// Generated Jun 29, 2017 5:56:37 PM by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -10,21 +10,36 @@ import java.util.Date;
 public class Budgetentry implements java.io.Serializable {
 
 	private Integer idbudgetentry;
-	private Budgetnomen budgetnomen;
 	private Integer userid;
+	private Integer nomenid;
 	private Integer periodicalid;
 	private Integer type;
 	private Date entrydate;
 	private String comment;
 	private BigDecimal moneyvalue;
 
+	private Budgetnomen budgetnomen = null;
+	
+	public Budgetnomen getBudgetnomen() {
+		return budgetnomen;
+	}
+
+	public void setBudgetnomen(Budgetnomen budgetNomen) {
+		this.budgetnomen = budgetNomen;
+		
+		if (budgetNomen != null 
+				&& budgetNomen.getIdbudgetnomens() != null 
+				&& budgetNomen.getIdbudgetnomens() > 0)
+			this.setNomenid(budgetNomen.getIdbudgetnomens());
+	}
+	
 	public Budgetentry() {
 	}
 
-	public Budgetentry(Budgetnomen budgetnomen, Integer userid, Integer periodicalid, Integer type, Date entrydate,
+	public Budgetentry(Integer userid, Integer nomenid, Integer periodicalid, Integer type, Date entrydate,
 			String comment, BigDecimal moneyvalue) {
-		this.budgetnomen = budgetnomen;
 		this.userid = userid;
+		this.nomenid = nomenid;
 		this.periodicalid = periodicalid;
 		this.type = type;
 		this.entrydate = entrydate;
@@ -40,20 +55,20 @@ public class Budgetentry implements java.io.Serializable {
 		this.idbudgetentry = idbudgetentry;
 	}
 
-	public Budgetnomen getBudgetnomen() {
-		return this.budgetnomen;
-	}
-
-	public void setBudgetnomen(Budgetnomen budgetnomen) {
-		this.budgetnomen = budgetnomen;
-	}
-
 	public Integer getUserid() {
 		return this.userid;
 	}
 
 	public void setUserid(Integer userid) {
 		this.userid = userid;
+	}
+
+	public Integer getNomenid() {
+		return this.nomenid;
+	}
+
+	public void setNomenid(Integer nomenid) {
+		this.nomenid = nomenid;
 	}
 
 	public Integer getPeriodicalid() {
@@ -95,5 +110,4 @@ public class Budgetentry implements java.io.Serializable {
 	public void setMoneyvalue(BigDecimal moneyvalue) {
 		this.moneyvalue = moneyvalue;
 	}
-
 }

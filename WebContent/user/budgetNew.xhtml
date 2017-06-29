@@ -18,13 +18,38 @@
 		</f:metadata>
 	</ui:define>
 	
-	<ui:define name="submitForm">					
+	<ui:define name="submitForm">							
 		<h3>#{msg.commonType}</h3>
 		<p:selectOneButton id="budgetType" value="#{budgetNewBean.entry.type}" required="true">
 		    <f:selectItem itemLabel="#{msg.commonExpense}" itemValue="#{generalBean.enumBudgetType.expense}" />
 		    <f:selectItem itemLabel="#{msg.commonIncome}" itemValue="#{generalBean.enumBudgetType.income}" />
+		    <p:ajax event="change" update="budgetNomen" listener="#{budgetNewBean.updateNomen(true)}" />
 		</p:selectOneButton>
 		<p:message for="budgetType" />
+		
+		<h3>#{msg.commonUserType}</h3>
+		<p:selectOneMenu id="budgetNomen" value="#{budgetNewBean.entry.nomenid}" required="true" >
+			<f:selectItem itemLabel="#{msg.commonSelectAnEntry}" itemValue="" />
+            <f:selectItems 
+            	value="#{budgetNewBean.selectableNomens}" 
+            	var="entry" 
+            	itemLabel="#{entry.name}" 
+            	itemValue="#{entry.idbudgetnomens}" />
+		</p:selectOneMenu>								 
+		<p:message for="budgetNomen" />
+		
+		<h3>#{msg.commonEntryDate}</h3>
+		<p:calendar id="popupCalendar" value="#{budgetNewBean.entry.entrydate}" required="true" />
+		<p:outputLabel for="popupCalendar" />
+		<p:message for="popupCalendar" />
+		
+		<h3>#{msg.commonMoneyValue}</h3>
+		<p:inputText 
+			id="budgetValue" 
+			value="#{budgetNewBean.entry.moneyvalue}"
+			converterId="javax.faces.BigDecimal" 
+			required="true" /> 
+		<p:message for="budgetValue" />	
 		
 		<h3>#{msg.commonDescription}</h3>
 		<p:inputTextarea

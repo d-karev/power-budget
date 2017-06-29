@@ -3,7 +3,14 @@ package bean;
 import customEnum.ActionOutcome;
 import model.Budgetentry;
 import model.BudgetentryHome;
+import model.Budgetnomen;
+import model.BudgetnomenHome;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
@@ -17,6 +24,17 @@ public class budgetNewBean {
 	private boolean editMode = false;	
 	
 	private Budgetentry entry = new Budgetentry();
+	private List<Budgetnomen> selectableNomens = new ArrayList<Budgetnomen>();
+	
+	@PostConstruct
+	public void init() {
+		if (!editMode)
+			entry.setEntrydate(new Date());
+	}
+	
+	public List<Budgetnomen> getSelectableNomens() {
+		return selectableNomens;
+	}
 	
 	public boolean getEditMode() {
 		return editMode;
@@ -66,8 +84,9 @@ public class budgetNewBean {
 			return ActionOutcome.outcomeFailure;
 		}
 		
-		if (findEntry != null && findEntry.getUserid() == userAuth.getLoggedUser().getIduser()) {
-			setEntry(findEntry);
+		if (findEntry != null && findEntry.getUserid() == userAuth.getLoggedUser().getIduser()) {			
+			setEntry(findEntry);			
+			updateNomen(false);
 			editMode = true;
 			return ActionOutcome.outcomeSuccess;
 		} else {
@@ -87,6 +106,7 @@ public class budgetNewBean {
 		try {		
 			if (entry.getUserid() == null || entry.getUserid() < 1)
 				entry.setUserid(userAuth.getLoggedUser().getIduser());
+			
 			BudgetentryHome nomenDb = new BudgetentryHome();
 			if(entry.getIdbudgetentry() != null && entry.getIdbudgetentry() > 1)
 				nomenDb.merge(entry);
@@ -115,5 +135,30 @@ public class budgetNewBean {
 		} else {
 			return ActionOutcome.outcomeFailure;
 		}
+	}
+	
+	private Budgetnomen selectedNomenById(int id) {
+		Budgetnomen result = null;
+		
+		for (int k = 0; k < selectableNomens.size(); k++) {
+			if (selectableNomens.get(k).getIdbudgetnomens() == id) {
+				result = selectableNomens.get(k);
+				break;
+			}
+		}
+		
+		return result;
+	}
+	
+	public void updateNomen(boolean resetEntry) {
+		Budgetnomen nomen = new Budgetnomen();
+		nomen.setType(entry.getType());
+		nomen.setUserid(userAuth.getLoggedUser().getIduser());
+		
+		BudgetnomenHome nomenDb = new BudgetnomenHome();
+		selectableNomens = nomenDb.findByExample(nomen);
+		
+		if (resetEntry)
+			entry.setNomenid(0);
 	}
 }

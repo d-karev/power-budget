@@ -127,6 +127,15 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: none;
 }
 
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 36px;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+	margin: auto;
+	margin-top: 8px;
+}
+
 div.ui-row-editor.ui-helper-clearfix {
 	display: inline;
 }

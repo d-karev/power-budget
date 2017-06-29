@@ -79,8 +79,8 @@ public class BudgetentryHome {
 	public Budgetentry merge(Budgetentry detachedInstance) {
 		log.debug("merging Budgetentry instance");
 		sessionFactory.getCurrentSession().beginTransaction();
-		try {
-			Budgetentry result = (Budgetentry) sessionFactory.getCurrentSession().merge(detachedInstance);
+		try {			
+			Budgetentry result = (Budgetentry) sessionFactory.getCurrentSession().merge(detachedInstance);			
 			sessionFactory.getCurrentSession().getTransaction().commit();
 			log.debug("merge successful");
 			return result;
@@ -100,7 +100,10 @@ public class BudgetentryHome {
 				log.debug("get successful, no instance found");
 			} else {
 				log.debug("get successful, instance found");
-			}
+				
+				instance.setBudgetnomen(loadNomen(instance.getNomenid()));
+			}						
+			
 			sessionFactory.getCurrentSession().getTransaction().commit();
 			return instance;
 		} catch (RuntimeException re) {
@@ -110,13 +113,17 @@ public class BudgetentryHome {
 		}
 	}
 
-	public List findByExample(Budgetentry instance) {
+	public List<Budgetentry> findByExample(Budgetentry instance) {
 		log.debug("finding Budgetentry instance by example");
 		sessionFactory.getCurrentSession().beginTransaction();
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("model.Budgetentry")
+			List<Budgetentry> results = sessionFactory.getCurrentSession().createCriteria("model.Budgetentry")
 					.add(Example.create(instance)).list();			
 			log.debug("find by example successful, result size: " + results.size());
+			
+			for (int k = 0; k < results.size(); k++)
+				results.get(k).setBudgetnomen(loadNomen(results.get(k).getNomenid()));
+			
 			sessionFactory.getCurrentSession().getTransaction().commit();
 			return results;
 		} catch (RuntimeException re) {
@@ -124,5 +131,13 @@ public class BudgetentryHome {
 			log.error("find by example failed", re);
 			throw re;
 		}
+	}
+	
+	private Budgetnomen loadNomen(int id) {
+		if (id < 1)
+			return null;
+		else {
+			return (Budgetnomen) sessionFactory.getCurrentSession().get("model.Budgetnomen", id);
+		}			
 	}
 }

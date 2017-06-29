@@ -30,11 +30,9 @@ CREATE TABLE `budgetentry` (
   `type` int(11) DEFAULT NULL,
   `entrydate` datetime DEFAULT NULL,
   `comment` varchar(256) DEFAULT NULL,
-  `moneyvalue` decimal(11,11) DEFAULT NULL,
-  PRIMARY KEY (`idbudgetentry`),
-  KEY `NomenTypeKey_idx` (`nomenid`),
-  CONSTRAINT `NomenTypeKey` FOREIGN KEY (`nomenid`) REFERENCES `budgetnomen` (`idbudgetnomens`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `moneyvalue` decimal(19,2) DEFAULT NULL,
+  PRIMARY KEY (`idbudgetentry`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +49,7 @@ CREATE TABLE `budgetnomen` (
   `comment` varchar(256) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
   PRIMARY KEY (`idbudgetnomens`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,4 +114,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-27  9:00:10
+-- Dump completed on 2017-06-29 19:27:05

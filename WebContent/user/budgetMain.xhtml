@@ -17,13 +17,13 @@
 
 	<ui:define name="title">#{msg.pageUserMovementsTitle}</ui:define>	
 	
-	<ui:define name="dataColumns">
-		<p:column headerText="#{msg.commonName}">
-	        <h:outputText value="#{entry.budgetnomen.name}" />
-	    </p:column>
-	
+	<ui:define name="dataColumns">	
 		<p:column headerText="#{msg.commonType}">
 	        <h:outputText value="#{budgetMainBean.getStringValueForType(entry.type)}" />
+	    </p:column>
+	    
+	    <p:column headerText="#{msg.commonUserType}">
+	        <h:outputText value="#{entry.budgetnomen.name}" />
 	    </p:column>
 	    
 	    <p:column headerText="#{msg.commonEntryDate}">
